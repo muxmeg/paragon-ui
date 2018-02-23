@@ -1,0 +1,12 @@
+<mat-card>
+  <mat-card-header>
+    <h5>Navigation data</h5>
+  </mat-card-header>
+  <mat-card-content>
+    <div *ngIf="data">
+      <p><span style="font-weight: 700">Coordinates:</span>&nbsp{{data.coordX}}:{{data.coordY}}</p>
+      <p><span style="font-weight: 700">Speed:</span>&nbsp{{data.speed}}</p>
+      <p><span style="font-weight: 700">Direction:</span>&nbsp{{data.direction}}</p>
+    </div>
+  </mat-card-content>
+</mat-card>

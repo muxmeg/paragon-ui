@@ -1,0 +1,32 @@
+<mat-card>
+  <mat-card-header>
+    <h5>Navigation commands</h5>
+  </mat-card-header>
+  <mat-card-content>
+    <!--<mat-table [dataSource]="navigationStrings">-->
+      <!--<ng-container matColumnDef="string">-->
+        <!--<mat-cell *matCellDef="let element">{{element}}</mat-cell>-->
+      <!--</ng-container>-->
+      <!--<mat-row *matRowDef="let element; columns: ['string']"></mat-row>-->
+    <!--</mat-table>-->
+    <mat-list>
+      <mat-list-item *ngFor="let navigationString of navigationStrings">
+        {{navigationString}}
+      </mat-list-item>
+    </mat-list>
+    <div>
+    <span *ngFor="let character of navigationCharacters; let i = index">
+      <button mat-raised-button color="primary" (click)="enterCharacter(character)">{{character}}</button>
+      <br *ngIf="((i + 1) % 6) === 0"/>
+    </span>
+    </div>
+    <mat-divider></mat-divider>
+    <p>
+      <button mat-raised-button color="warn" (click)="clearCommand()">Reset</button>
+      <span *ngIf="sendMessage" style="margin-left: 10px; color: rgb(34, 173, 40); font-style: italic;"
+            [@ngIfAnimation]>
+        Command send!
+      </span>
+    </p>
+  </mat-card-content>
+</mat-card>

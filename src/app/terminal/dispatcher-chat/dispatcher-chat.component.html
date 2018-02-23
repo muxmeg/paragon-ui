@@ -1,0 +1,19 @@
+<div fxLayout="column" fxFlex="70%" fxFlex.lt-md="100%">
+  <mat-nav-list dense style="height: 70vh; overflow: auto;" [appScrollDown]>
+    <mat-list-item *ngFor="let message of messages">
+      <span style="font-weight: 700; margin-right: 0.5vh">
+      {{message.sender}}:
+      </span>
+      {{message.body}}
+    </mat-list-item>
+  </mat-nav-list>
+  <div fxLayout='row'>
+      <!--fxFlex="50%" fxFlex.lt-md="80%"-->
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="Input" [(ngModel)]="currentMessage" (keypress)="onEnterPress($event)">
+      </mat-form-field>
+    <div style="width: 20%">
+      <button mat-raised-button color="primary" (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>

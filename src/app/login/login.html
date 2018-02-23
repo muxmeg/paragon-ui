@@ -1,0 +1,24 @@
+<mat-card style="width: 200px;
+    margin: auto;
+    text-align: center;">
+  <mat-card-content>
+    <h4>Regular</h4>
+    <p>
+      <mat-form-field>
+        <input matInput placeholder="Enter your role" [(ngModel)]="role" required>
+        <mat-error>This field is required</mat-error>
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field>
+        <input matInput [(ngModel)]="password" required type="password">
+        <mat-placeholder >
+          <i class="material-icons" style="font-size: inherit;">lock_open</i><span>Enter your password</span>
+        </mat-placeholder>
+        <mat-error>This field is required</mat-error>
+      </mat-form-field>
+    </p>
+    <button mat-raised-button color="warn" name="action" (click)="login(role, password)">LOGIN</button><br><br>
+    <span style="color: indianred" *ngIf="showException"><small>Login error. Please, contact your supervisor.</small></span>
+</mat-card-content>
+</mat-card>
