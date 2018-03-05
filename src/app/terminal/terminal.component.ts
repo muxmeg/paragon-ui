@@ -14,7 +14,7 @@ export class TerminalComponent {
   notifications: Object;
   actionComponents: Object;
 
-  constructor(authService: AuthService, router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
     this.role = authService.currentRole;
     if (!this.role) {
       router.navigate(["/login"]);
@@ -26,4 +26,8 @@ export class TerminalComponent {
     this.notifications["publicChat"] = 0;
   }
 
+  logout() {
+    this.authService.currentRole = null;
+    this.router.navigate(["/login"]);
+  }
 }

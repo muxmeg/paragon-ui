@@ -3,7 +3,12 @@ import {TerminalComponent} from "./terminal.component";
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
 import {DispatcherChatComponent} from "./dispatcher-chat/dispatcher-chat.component";
 import {
-  MatButtonModule, MatFormFieldModule, MatInputModule, MatListModule, MatSelectModule, MatTableModule,
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatListModule,
+  MatSelectModule,
+  MatTableModule,
   MatTabsModule
 } from "@angular/material";
 import {CommonModule} from "@angular/common";
@@ -21,31 +26,65 @@ import {AnchorComponent} from "./actions/anchor.component";
 import {NavigationDataComponent} from "./actions/navigation-data.component";
 import {FirstPilotActionsComponent} from "./actions/roles/first-pilot-actions.component";
 import {NavigationPanelComponent} from "./actions/navigation-panel.component";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SecondPilotActionsComponent} from "./actions/roles/second-pilot-actions.component";
 import {GeneratorActivationComponent} from "./actions/generator-activation.component";
 import {CoordinatorActionsComponent} from "./actions/roles/coordinator-actions.component";
 import {DispatcherActionsComponent} from "./actions/roles/dispatcher-actions.component";
 import {NavigationCommandsComponent} from "./actions/navigation-commands.component";
+import {NavigatorActionsComponent} from "./actions/roles/navigator-actions.component";
+import {SecretChatComponent} from "./secret-chat/secret-chat.component";
+import {SkkActionsComponent} from "./actions/roles/skk-actions.component";
+import {OperatorActionsComponent} from "./actions/roles/operator-actions.component";
+import {AnalystActionsComponent} from "./actions/roles/analyst-actions.component";
+import {EngineerActionsComponent} from "./actions/roles/engineer-actions.component";
+import {ShipDataPanelComponent} from "./actions/ship-data-panel.component";
+import {CargoPanelComponent} from "./actions/cargo-panel.component";
+import {LoggedInGuard} from "./guards/LoggedInGuard";
+import {EnginePanelComponent} from "./actions/engine-panel.component";
+import {ScheduledTaskService} from "./scheduled-task.service";
 
 const appRoutes: Routes = [
-  { path: "",
+  {
+    path: "",
     component: TerminalComponent,
-    children: [
-        {
-          path: "captain",
-          component: CaptainActionsComponent
-        },
-      {
-        path: "firstPilot",
-        component: FirstPilotActionsComponent
-      }
-  ] }
+    canActivate: [LoggedInGuard],
+    children: [{
+      path: "captain",
+      component: CaptainActionsComponent
+    }, {
+      path: "firstPilot",
+      component: FirstPilotActionsComponent
+    }, {
+      path: "secondPilot",
+      component: SecondPilotActionsComponent
+    }, {
+      path: "coordinator",
+      component: CoordinatorActionsComponent
+    }, {
+      path: "navigator",
+      component: NavigatorActionsComponent
+    }, {
+      path: "SKK",
+      component: SkkActionsComponent
+    }, {
+      path: "dispatcher",
+      component: DispatcherActionsComponent
+    }, {
+      path: "operator",
+      component: OperatorActionsComponent
+    }, {
+      path: "analyst",
+      component: AnalystActionsComponent
+    }, {
+      path: "engineer",
+      component: EngineerActionsComponent
+    }]
+  }
 ];
 
 @NgModule({
   declarations: [
-    TerminalComponent,
+    TerminalComponent, // TODO pack into modules
     DispatcherChatComponent,
     ScrollDownDirective,
     GmChatComponent,
@@ -55,13 +94,22 @@ const appRoutes: Routes = [
     AnchorComponent,
     NavigationDataComponent,
     NavigationPanelComponent,
+    EnginePanelComponent,
     NavigationCommandsComponent,
     GeneratorActivationComponent,
+    CargoPanelComponent,
+    ShipDataPanelComponent,
+    SecretChatComponent,
+    SkkActionsComponent,
+    OperatorActionsComponent,
+    AnalystActionsComponent,
     CaptainActionsComponent,
     FirstPilotActionsComponent,
     SecondPilotActionsComponent,
     CoordinatorActionsComponent,
-    DispatcherActionsComponent
+    DispatcherActionsComponent,
+    NavigatorActionsComponent,
+    EngineerActionsComponent
   ],
   imports: [
     RouterModule.forChild(
@@ -79,6 +127,7 @@ const appRoutes: Routes = [
     MatTableModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [RolesService, ImmediateTaskService]
+  providers: [RolesService, ImmediateTaskService, ScheduledTaskService, LoggedInGuard]
 })
-export class TerminalModule { }
+export class TerminalModule {
+}

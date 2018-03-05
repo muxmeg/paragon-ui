@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-header>
+    <h5>Navigation commands</h5>
+  </mat-card-header>
+  <mat-card-content>
+      <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="navigationCommands">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="task">
+            <mat-header-cell *matHeaderCellDef>Task</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{displayTask(element.task)}}</mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="command">
+            <mat-header-cell *matHeaderCellDef>Command</mat-header-cell>
+            <mat-cell *matCellDef="let element">{{displayEncryptedCommand(element.command)}}</mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+</mat-card>
+

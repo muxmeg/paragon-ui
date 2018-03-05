@@ -26,4 +26,10 @@ export class ImmediateTaskService {
       JSON.stringify({type: "switchAnchor", parameters: {},
         sender: this.authService.currentRole.name}));
   }
+
+  ejectCargo(cargoId): void {
+    this.stompService.publish(this.SERVICE_URL,
+      JSON.stringify({type: "ejectCargo", parameters: {cargoId: cargoId},
+        sender: this.authService.currentRole.name}));
+  }
 }

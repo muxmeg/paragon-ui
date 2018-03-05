@@ -6,6 +6,7 @@ import {keyframes} from "@angular/core/src/animation/dsl";
 @Component({
   selector: "app-action-navigation-panel",
   templateUrl: "navigation-panel.component.html",
+  styleUrls: [ "navigation-panel.component.css" ],
   animations: [
     trigger("ngIfAnimation", [
       transition("void => *", [
@@ -23,10 +24,11 @@ import {keyframes} from "@angular/core/src/animation/dsl";
 export class NavigationPanelComponent {
   private readonly NAVIGATION_STRINGS_TOPIC_MAPPING: string = "/topic/navigationStrings";
   private readonly NAVIGATION_COMMANDS_MAPPING: string = "/ws/navigationCommands";
+  private readonly NAVIGATION_STRINGS_REQUEST_MAPPING: string = "/ws/navigationStrings/request";
 
   navigationStrings: string[];
-  navigationCharacters: string[] = ["a", "b", "c", "A", "B", "C", "1", "2", "3", "!", "@", "#", "$", "%", "^", "&", "*",
-    "(", ")", "_", "+", "=", "-", "'", "/", ".", ",", "[", "]", "{", "}", "~"];
+  navigationCharacters: string[] = ["a", "b", "c", "d", "A", "B", "C", "D", "X", "1", "2", "3", "!", "?", "@", "#", "$",
+    "%", "^", "&", "*", "(", ")", "+", "=", "-", "'", "/", ".", ",", "[", "]", "{", "}", "~"];
   commandLength = 12;
   currentCommand = "";
   sendMessage = false;
@@ -34,8 +36,11 @@ export class NavigationPanelComponent {
   constructor(private stompService: StompService) {
     stompService.subscribe(this.NAVIGATION_STRINGS_TOPIC_MAPPING)
       .subscribe((result) => {
-        this.navigationStrings = JSON.parse(result.body);
+        this.navigationStrings = JSON.parse(result.body).map((value) => value.split("").join("        "));
       });
+    setTimeout(() => {
+      this.stompService.publish(this.NAVIGATION_STRINGS_REQUEST_MAPPING, "ololo"); // TODO remove messages
+    }, 1000);
   }
   clearCommand(): void {
     this.currentCommand = "";

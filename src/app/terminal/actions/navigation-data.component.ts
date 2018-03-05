@@ -13,13 +13,17 @@ import {NavigationData} from "../../model/navigationData";
 
 export class NavigationDataComponent {
   private readonly NAVIGATION_DATA_TOPIC_MAPPING: string = "/topic/navigationData";
+  private readonly NAVIGATION_DATA_REQUEST_MAPPING: string = "/ws/navigationData/request";
 
   data: NavigationData;
 
-  constructor(stompService: StompService) {
+  constructor(private stompService: StompService) {
     stompService.subscribe(this.NAVIGATION_DATA_TOPIC_MAPPING)
       .subscribe((result) => {
         this.data = JSON.parse(result.body);
       });
+    setTimeout(() => {
+      this.stompService.publish(this.NAVIGATION_DATA_REQUEST_MAPPING, "ololo"); // TODO remove messages
+    }, 1000);
   }
 }

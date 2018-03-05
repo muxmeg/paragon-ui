@@ -4,9 +4,15 @@
   </mat-card-header>
   <mat-card-content>
     <div *ngIf="data">
-      <p><span style="font-weight: 700">Coordinates:</span>&nbsp{{data.coordX}}:{{data.coordY}}</p>
-      <p><span style="font-weight: 700">Speed:</span>&nbsp{{data.speed}}</p>
-      <p><span style="font-weight: 700">Direction:</span>&nbsp{{data.direction}}</p>
+      <p><span style="font-weight: 700">Coordinates:</span> {{data.coordX}} -- {{data.coordY}}</p>
+      <p><span style="font-weight: 700">Speed:</span> {{data.speed}}</p>
+      <p>
+        <span style="font-weight: 700">Direction:</span>
+        <!--{{+data.direction.substr(1)}}-->
+        <i class="material-icons" [ngStyle]="{'transform': 'rotate(' + data.direction.substr(1) + 'deg)'}">
+          arrow_upward
+        </i>
+      </p>
     </div>
   </mat-card-content>
 </mat-card>

@@ -1,3 +1,4 @@
+<button mat-raised-button style="position: absolute; right: 15px; top: 15px;" (click)="logout()">Logout</button>
 <mat-tab-group class="tab-group">
   <mat-tab *ngIf="role.name === 'dispatcher' || role.name === 'operator'" (click)="onPublicTabClick()">
     <ng-template mat-tab-label>
@@ -21,6 +22,14 @@
     </ng-template>
     <div class="tab-content">
       <app-private-chat></app-private-chat>
+    </div>
+  </mat-tab>
+  <mat-tab *ngIf="role.name === 'SKK'">
+    <ng-template mat-tab-label>
+      Secret chat <span [hidden]=""></span>
+    </ng-template>
+    <div class="tab-content">
+      <app-secret-chat></app-secret-chat>
     </div>
   </mat-tab>
   <mat-tab>

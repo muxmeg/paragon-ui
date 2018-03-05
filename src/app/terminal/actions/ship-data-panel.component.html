@@ -1,0 +1,31 @@
+<mat-card fxFlex="50%" fxFlex.lt-md="100%">
+  <mat-card-header>
+    <h5>Ship status</h5>
+  </mat-card-header>
+  <mat-card-content style="    display: block;">
+    <div style="padding: 9px;      margin-bottom: 20px;    background-color: #f5f5f5;    border: 1px solid #787878;
+    border-radius: 3px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);">
+      <!--<i class="material-icons">next_week</i>-->
+        <div *ngFor="let shipData of data" style="background-color: whitesmoke; display: flex; flex-direction: column">
+          <div fxFlex="row" fxLayoutAlign="space-around center" fxLayoutWrap="wrap" style="font-weight: bold;">
+            <div style="width: 33%">Hull: {{shipData.hull}}%</div>
+            <div style="width: 33%">Air: {{shipData.air}}%</div>
+            <div style="width: 33%">Engine: {{shipData.engine}}%</div>
+            <div style="width: 33%">Air Users: {{shipData.airUsers}}</div>
+            <div style="width: 66%">
+              Cargo:
+              <span *ngFor="let cargoItem of shipData.cargo">
+                  <i class="material-icons" *ngIf="cargoItem" style="color: green">next_week</i>
+                  <i class="material-icons" *ngIf="!cargoItem" style="color: red">call_missed_outgoing</i>
+              </span>
+            </div>
+          </div>
+          <div>
+            {{shipData.message}}
+          </div>
+          <mat-divider></mat-divider>
+        </div>
+    </div>
+  </mat-card-content>
+</mat-card>

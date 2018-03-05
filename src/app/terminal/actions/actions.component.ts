@@ -11,6 +11,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class ActionsComponent {
   constructor(authService: AuthService, router: Router, private route: ActivatedRoute) {
-    router.navigate([authService.currentRole.name], { relativeTo: this.route });
+    if (authService.currentRole) {
+      router.navigate([authService.currentRole.name], { relativeTo: this.route });
+    }
   }
 }
