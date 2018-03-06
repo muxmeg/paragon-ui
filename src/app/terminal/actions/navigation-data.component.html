@@ -8,8 +8,8 @@
       <p><span style="font-weight: 700">Speed:</span> {{data.speed}}</p>
       <p>
         <span style="font-weight: 700">Direction:</span>
-        <!--{{+data.direction.substr(1)}}-->
-        <i class="material-icons" [ngStyle]="{'transform': 'rotate(' + data.direction.substr(1) + 'deg)'}">
+        <i class="material-icons" [ngStyle]="{'transform': 'rotate(' + data.direction.substr(1) + 'deg)'}"
+           style="vertical-align:middle;">
           arrow_upward
         </i>
       </p>

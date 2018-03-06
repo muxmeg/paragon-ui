@@ -5,6 +5,7 @@ import {AuthService} from "../../../shared/authentication.service";
   template:  `
     <app-action-ship-data></app-action-ship-data>
     <app-action-navigation-data></app-action-navigation-data>
+    <app-action-meteor-storm-data></app-action-meteor-storm-data>
   `
 })
 export class AnalystActionsComponent {

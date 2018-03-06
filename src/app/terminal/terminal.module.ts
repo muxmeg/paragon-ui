@@ -42,6 +42,7 @@ import {CargoPanelComponent} from "./actions/cargo-panel.component";
 import {LoggedInGuard} from "./guards/LoggedInGuard";
 import {EnginePanelComponent} from "./actions/engine-panel.component";
 import {ScheduledTaskService} from "./scheduled-task.service";
+import {MeteorStormDataComponent} from "./actions/meteor-storm-data.component";
 
 const appRoutes: Routes = [
   {
@@ -99,6 +100,7 @@ const appRoutes: Routes = [
     GeneratorActivationComponent,
     CargoPanelComponent,
     ShipDataPanelComponent,
+    MeteorStormDataComponent,
     SecretChatComponent,
     SkkActionsComponent,
     OperatorActionsComponent,
