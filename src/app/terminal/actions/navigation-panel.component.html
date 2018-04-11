@@ -16,8 +16,7 @@
       </mat-list>
     </div>
     <div style="display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;">
+    flex-flow: row wrap;">
     <div *ngFor="let character of navigationCharacters; let i = index" style="width: 14%; text-align: center; height: 34px;">
       <button style="line-height: 30px;" mat-raised-button color="primary" (click)="enterCharacter(character)">{{character}}</button>
     </div>

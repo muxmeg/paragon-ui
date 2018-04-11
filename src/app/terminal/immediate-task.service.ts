@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {StompService} from "@stomp/ng2-stompjs";
 import {AuthService} from "../shared/authentication.service";
+import {ShipManualEvent} from "../model/shipEvent";
 
 @Injectable()
 export class ImmediateTaskService {
@@ -27,9 +28,15 @@ export class ImmediateTaskService {
         sender: this.authService.currentRole.name}));
   }
 
-  ejectCargo(cargoId): void {
+  ejectCargo(cargoId: number): void {
     this.stompService.publish(this.SERVICE_URL,
       JSON.stringify({type: "ejectCargo", parameters: {cargoId: cargoId},
+        sender: this.authService.currentRole.name}));
+  }
+
+  createManualEvent(shipEvent: ShipManualEvent): void {
+    this.stompService.publish(this.SERVICE_URL,
+      JSON.stringify({type: "manualEvent", parameters: shipEvent,
         sender: this.authService.currentRole.name}));
   }
 }

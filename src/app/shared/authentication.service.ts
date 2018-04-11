@@ -15,7 +15,7 @@ export class AuthService {
   authenticateUser(name: string, password: string): Observable<Role> {
     const observable: Observable<Role> = this.http.post<Role>(this.REST_SERVICE_URL + "login",
       {name: name, password: password});
-    observable.subscribe((result: Role) => {
+    observable.subscribe((result: Role) => { // TODO remove subscribe
       if (result) {
         this.currentRole = result;
       }

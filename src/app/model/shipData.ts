@@ -5,4 +5,5 @@ export interface ShipData {
   cargo: boolean[];
   airUsers: number;
   message: string;
+  anchorOn: boolean;
 }

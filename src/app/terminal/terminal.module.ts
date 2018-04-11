@@ -3,7 +3,7 @@ import {TerminalComponent} from "./terminal.component";
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
 import {DispatcherChatComponent} from "./dispatcher-chat/dispatcher-chat.component";
 import {
-  MatButtonModule,
+  MatButtonModule, MatCheckboxModule,
   MatFormFieldModule,
   MatInputModule,
   MatListModule,
@@ -44,6 +44,8 @@ import {EnginePanelComponent} from "./actions/engine-panel.component";
 import {ScheduledTaskService} from "./scheduled-task.service";
 import {MeteorStormDataComponent} from "./actions/meteor-storm-data.component";
 import {WindDataComponent} from "./actions/wind-data.component";
+import {GmActionsComponent} from "./actions/roles/gm-actions.component";
+import {ShipManualEventsComponent} from "./actions/ship-manual-events.component";
 
 const appRoutes: Routes = [
   {
@@ -80,6 +82,9 @@ const appRoutes: Routes = [
     }, {
       path: "engineer",
       component: EngineerActionsComponent
+    }, {
+      path: "GM",
+      component: GmActionsComponent
     }]
   }
 ];
@@ -103,6 +108,7 @@ const appRoutes: Routes = [
     ShipDataPanelComponent,
     WindDataComponent,
     MeteorStormDataComponent,
+    ShipManualEventsComponent,
     SecretChatComponent,
     SkkActionsComponent,
     OperatorActionsComponent,
@@ -113,7 +119,8 @@ const appRoutes: Routes = [
     CoordinatorActionsComponent,
     DispatcherActionsComponent,
     NavigatorActionsComponent,
-    EngineerActionsComponent
+    EngineerActionsComponent,
+    GmActionsComponent
   ],
   imports: [
     RouterModule.forChild(
@@ -128,7 +135,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     FlexLayoutModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatCheckboxModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [RolesService, ImmediateTaskService, ScheduledTaskService, LoggedInGuard]

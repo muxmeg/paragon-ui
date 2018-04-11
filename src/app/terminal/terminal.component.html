@@ -16,7 +16,7 @@
       <app-terminal-actions></app-terminal-actions>
     </div>
   </mat-tab>
-  <mat-tab label="Private chat">
+  <mat-tab label="Private chat" *ngIf="role.name !== 'GM'">
     <ng-template mat-tab-label>
       Private chat <span [hidden]=""></span>
     </ng-template>

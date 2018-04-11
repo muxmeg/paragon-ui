@@ -10,7 +10,11 @@ export class RolesService {
   constructor(private http: HttpClient) {
   }
 
-  findTeamMembers(team: string): Observable<Object> {
-    return this.http.get(this.REST_SERVICE_URL + "names/", {params: {team}});
+  findTeamMembers(team?: string): Observable<Object> {
+    const options: any = {};
+    if (team) {
+      options.params = {team};
+    }
+    return this.http.get(this.REST_SERVICE_URL + "names/", options);
   }
 }

@@ -36,8 +36,7 @@ export class PrivateChatComponent {
       this.messages.push(message);
     });
     rolesService.findTeamMembers(this.authService.currentRole.team).subscribe((result: string[]) => {
-      this.recipientOptions = result.filter(role => role !== this.authService.currentRole.name)
-        .map(role => role);
+      this.recipientOptions = result.filter(role => role !== this.authService.currentRole.name);
       this.currentRecipient = this.recipientOptions[0];
     });
   }
