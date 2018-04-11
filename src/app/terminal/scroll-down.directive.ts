@@ -12,7 +12,7 @@ export class ScrollDownDirective implements AfterContentInit {
     this.el = el.nativeElement;
   }
   @HostListener("scroll") onScroll() {
-    this.isLocked = this.el.scrollTop < this.el.scrollHeight / 3;
+    this.isLocked = this.el.scrollHeight > 700 ? this.el.scrollTop < this.el.scrollHeight / 3 : false;
   }
 
   ngAfterContentInit() {
@@ -22,6 +22,7 @@ export class ScrollDownDirective implements AfterContentInit {
       if ( !this.isLocked ) {
         this.el.scrollTop = this.el.scrollHeight;
       }
+      console.log(this.el.scrollTop + "   ====   " + this.el.scrollHeight / 3);
     });
 
     this.observer.observe(this.el, { childList: true, subtree: true });

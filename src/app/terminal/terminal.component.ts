@@ -2,6 +2,7 @@ import {Component} from "@angular/core";
 import {Router} from "@angular/router";
 import {Role} from "../model/role";
 import {AuthService} from "../shared/authentication.service";
+import {MatTabChangeEvent} from "@angular/material";
 
 @Component({
   selector: "app-terminal",
@@ -12,22 +13,29 @@ import {AuthService} from "../shared/authentication.service";
 export class TerminalComponent {
   role: Role;
   notifications: Object;
-  actionComponents: Object;
+  currentTab: string;
 
   constructor(private authService: AuthService, private router: Router) {
     this.role = authService.currentRole;
     if (!this.role) {
       router.navigate(["/login"]);
     }
-    this.notifications = {publicChat: 1, actions: 0, privateChat: 0, gmChat: 0};
+    this.notifications = {publicChat: 0, privateChat: 0, gmChat: 0, secretChat: 0};
   }
 
-  onPublicTabClick() {
-    this.notifications["publicChat"] = 0;
+  onMessageReceive(tabName) {
+    if (this.currentTab !== tabName) {
+      this.notifications[tabName]++;
+    }
   }
 
   logout() {
     this.authService.currentRole = null;
     this.router.navigate(["/login"]);
+  }
+
+  onTabChange($event: MatTabChangeEvent) {
+    this.currentTab = $event.tab.textLabel;
+    this.notifications[this.currentTab] = 0;
   }
 }

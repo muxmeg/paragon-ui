@@ -1,11 +1,14 @@
-<button mat-raised-button style="position: absolute; right: 15px; top: 15px;" (click)="logout()">Logout</button>
-<mat-tab-group class="tab-group">
-  <mat-tab *ngIf="role.name === 'dispatcher' || role.name === 'operator'" (click)="onPublicTabClick()">
+<button mat-raised-button style="position: absolute; right: 15px; top: 15px; z-index: 100;" (click)="logout()">Logout</button>
+<mat-tab-group class="tab-group" (selectedTabChange)="onTabChange($event)">
+  <mat-tab label="publicChat" *ngIf="role.name === 'dispatcher' || role.name === 'operator'">
     <ng-template mat-tab-label>
-      Dispatcher chat <span [hidden]=""></span>
+      Dispatcher chat
+      <span style="padding: 2px 4px; background-color: red; color: white;" [hidden]="!notifications['publicChat']">
+        {{notifications['publicChat']}}
+      </span>
     </ng-template>
     <div class="tab-content">
-      <app-dispatcher-chat></app-dispatcher-chat>
+      <app-dispatcher-chat (messageReceive)="onMessageReceive('publicChat')"></app-dispatcher-chat>
     </div>
   </mat-tab>
   <mat-tab>
@@ -16,28 +19,37 @@
       <app-terminal-actions></app-terminal-actions>
     </div>
   </mat-tab>
-  <mat-tab label="Private chat" *ngIf="role.name !== 'GM'">
+  <mat-tab label="privateChat" *ngIf="role.name !== 'GM'">
     <ng-template mat-tab-label>
-      Private chat <span [hidden]=""></span>
+      Private chat
+      <span style="padding: 2px 4px; background-color: red; color: white;" [hidden]="!notifications['privateChat']">
+        {{notifications['privateChat']}}
+      </span>
     </ng-template>
     <div class="tab-content">
-      <app-private-chat></app-private-chat>
+      <app-private-chat (messageReceive)="onMessageReceive('privateChat')"></app-private-chat>
     </div>
   </mat-tab>
-  <mat-tab *ngIf="role.name === 'SKK'">
+  <mat-tab label="secretChat" *ngIf="role.name === 'SKK'">
     <ng-template mat-tab-label>
-      Secret chat <span [hidden]=""></span>
+      Secret chat
+      <span style="padding: 2px 4px; background-color: red; color: white;" [hidden]="!notifications['secretChat']">
+        {{notifications['secretChat']}}
+      </span>
     </ng-template>
     <div class="tab-content">
-      <app-secret-chat></app-secret-chat>
+      <app-secret-chat (messageReceive)="onMessageReceive('secretChat')"></app-secret-chat>
     </div>
   </mat-tab>
-  <mat-tab>
+  <mat-tab label="gmChat">
     <ng-template mat-tab-label>
-      GM chat <span [hidden]=""></span>
+      GM chat
+      <span style="padding: 2px 4px; background-color: red; color: white;" [hidden]="!notifications['gmChat']">
+        {{notifications['gmChat']}}
+      </span>
     </ng-template>
     <div class="tab-content">
-      <app-gm-chat></app-gm-chat>
+      <app-gm-chat (messageReceive)="onMessageReceive('gmChat')"></app-gm-chat>
     </div>
   </mat-tab>
 </mat-tab-group>

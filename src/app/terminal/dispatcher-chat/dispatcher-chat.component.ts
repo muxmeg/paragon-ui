@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {Component, EventEmitter, Input, Output, ViewChild} from "@angular/core";
 import {UserMessage} from "../../model/userMessage";
 import {StompService} from "@stomp/ng2-stompjs";
 import {AuthService} from "../../shared/authentication.service";
@@ -10,12 +10,14 @@ import {AuthService} from "../../shared/authentication.service";
 })
 
 export class DispatcherChatComponent {
+
+  @Output() messageReceive: EventEmitter<any> = new EventEmitter();
+  currentMessage: string;
+  messages: UserMessage[];
+
   private readonly PUBLIC_CHAT_MESSAGE_MAPPING: string = "/ws/dispatcherChat";
   private readonly PUBLIC_CHAT_TOPIC_MAPPING: string = "/topic/dispatcherChat";
   private readonly MESSAGE_LIMIT: number = 20;
-
-  currentMessage: string;
-  messages: UserMessage[];
 
   constructor(private authService: AuthService, private stompService: StompService) {
     this.messages = [];
@@ -25,6 +27,9 @@ export class DispatcherChatComponent {
         this.messages.splice(0, 1);
       }
       this.messages.push(message);
+      if (message.sender !== this.authService.currentRole.name) {
+        this.messageReceive.emit();
+      }
     });
   }
 
