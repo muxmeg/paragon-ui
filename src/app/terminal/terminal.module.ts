@@ -46,6 +46,8 @@ import {MeteorStormDataComponent} from "./actions/meteor-storm-data.component";
 import {WindDataComponent} from "./actions/wind-data.component";
 import {GmActionsComponent} from "./actions/roles/gm-actions.component";
 import {ShipManualEventsComponent} from "./actions/ship-manual-events.component";
+import {RadarComponent} from "./actions/radar-data.component";
+import {SplitPipe} from "./pipes/SplitPipe";
 
 const appRoutes: Routes = [
   {
@@ -106,6 +108,7 @@ const appRoutes: Routes = [
     GeneratorActivationComponent,
     CargoPanelComponent,
     ShipDataPanelComponent,
+    RadarComponent,
     WindDataComponent,
     MeteorStormDataComponent,
     ShipManualEventsComponent,
@@ -120,7 +123,8 @@ const appRoutes: Routes = [
     DispatcherActionsComponent,
     NavigatorActionsComponent,
     EngineerActionsComponent,
-    GmActionsComponent
+    GmActionsComponent,
+    SplitPipe
   ],
   imports: [
     RouterModule.forChild(

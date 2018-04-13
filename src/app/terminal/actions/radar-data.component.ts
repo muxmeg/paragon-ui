@@ -6,6 +6,7 @@ import {RolesService} from "../roles.service";
 import {Role} from "../../model/role";
 import {NavigationData} from "../../model/navigationData";
 import {WindData} from "../../model/windData";
+import {RadarData} from "../../model/radarData";
 
 @Component({
   selector: "app-action-radar-data",
@@ -13,10 +14,10 @@ import {WindData} from "../../model/windData";
 })
 
 export class RadarComponent {
-  private readonly RADAR_DATA_TOPIC_MAPPING: string = "/topic/radar";
-  private readonly RADAR_DATA_REQUEST_MAPPING: string = "/ws/radar/request";
+  private readonly RADAR_DATA_TOPIC_MAPPING: string = "/topic/radarData";
+  private readonly RADAR_DATA_REQUEST_MAPPING: string = "/ws/radarData/request";
 
-  data: WindData;
+  data: RadarData = {};
 
   constructor(private stompService: StompService) {
     stompService.subscribe(this.RADAR_DATA_TOPIC_MAPPING)

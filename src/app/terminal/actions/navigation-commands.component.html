@@ -6,16 +6,11 @@
       <div class="example-container mat-elevation-z8">
         <mat-table #table [dataSource]="navigationCommands">
 
-          <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-
-          <!-- Position Column -->
           <ng-container matColumnDef="task">
             <mat-header-cell *matHeaderCellDef>Task</mat-header-cell>
             <mat-cell *matCellDef="let element">{{displayTask(element.task)}}</mat-cell>
           </ng-container>
 
-          <!-- Name Column -->
           <ng-container matColumnDef="command">
             <mat-header-cell *matHeaderCellDef>Command</mat-header-cell>
             <mat-cell *matCellDef="let element">{{displayEncryptedCommand(element.command)}}</mat-cell>

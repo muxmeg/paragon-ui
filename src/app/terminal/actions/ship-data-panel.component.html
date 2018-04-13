@@ -9,7 +9,7 @@
       <div *ngFor="let shipData of data" style="background-color: whitesmoke; display: flex; flex-direction: column; padding: 10px;">
         <div fxFlex="row" fxLayoutWrap="wrap">
           <div style="width: 33%"><span style="font-weight: bold;">Hull:</span> {{shipData.hull}}%</div>
-          <div style="width: 33%"><span style="font-weight: bold;">Air:</span> {{shipData.air}}%</div>
+          <div style="width: 33%"><span style="font-weight: bold;">Air:</span> {{shipData.air | number : '1.0-2'}}%</div>
           <div style="width: 33%"><span style="font-weight: bold;">Engine:</span> {{shipData.engine}}%</div>
           <div style="width: 33%"><span style="font-weight: bold;">Air Users:</span> {{shipData.airUsers}}</div>
           <div style="width: 33%"><span style="font-weight: bold;">Anchor:</span> {{shipData.anchorOn ? "Enabled" :

@@ -36,7 +36,7 @@ export class NavigationPanelComponent {
   constructor(private stompService: StompService) {
     stompService.subscribe(this.NAVIGATION_STRINGS_TOPIC_MAPPING)
       .subscribe((result) => {
-        this.navigationStrings = JSON.parse(result.body).map((value) => value.split("").join("        "));
+        this.navigationStrings = JSON.parse(result.body).map((value) => value.split(""));
       });
     setTimeout(() => {
       this.stompService.publish(this.NAVIGATION_STRINGS_REQUEST_MAPPING, "ololo"); // TODO remove messages

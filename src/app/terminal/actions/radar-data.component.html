@@ -3,12 +3,17 @@
     <h5>Radar</h5>
   </mat-card-header>
   <mat-card-content>
-    <div *ngIf="data.message">
+    <div *ngIf="data.object">
       <p><span style="font-weight: 700">Object detected!</span></p>
-      <p>{{data.message}}</p>
+      <p>{{data.object.name}}</p>
+      <p><span style="font-weight: 700">Coordinates:</span> [{{data.object.coordX}}; {{data.object.coordY}}]</p>
+      <p>
+        <small style="color: green" *ngIf="data.canBeBoarded">Can be boarded!</small>
+        <small style="color: red" *ngIf="!data.canBeBoarded">Too distant to board!</small>
+      </p>
     </div>
-    <div *ngIf="!data.message">
-      <p>Nothing</p>
+    <div *ngIf="!data.object">
+      <p>No objects on radar</p>
     </div>
   </mat-card-content>
 </mat-card>
