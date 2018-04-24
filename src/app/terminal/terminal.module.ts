@@ -3,7 +3,8 @@ import {TerminalComponent} from "./terminal.component";
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from "@angular/core";
 import {DispatcherChatComponent} from "./dispatcher-chat/dispatcher-chat.component";
 import {
-  MatButtonModule, MatCheckboxModule,
+  MatButtonModule,
+  MatCheckboxModule,
   MatFormFieldModule,
   MatInputModule,
   MatListModule,
@@ -47,7 +48,7 @@ import {WindDataComponent} from "./actions/wind-data.component";
 import {GmActionsComponent} from "./actions/roles/gm-actions.component";
 import {ShipManualEventsComponent} from "./actions/ship-manual-events.component";
 import {RadarComponent} from "./actions/radar-data.component";
-import {SplitPipe} from "./pipes/SplitPipe";
+import {EjectAirComponent} from "./actions/eject-air.component";
 
 const appRoutes: Routes = [
   {
@@ -109,6 +110,7 @@ const appRoutes: Routes = [
     CargoPanelComponent,
     ShipDataPanelComponent,
     RadarComponent,
+    EjectAirComponent,
     WindDataComponent,
     MeteorStormDataComponent,
     ShipManualEventsComponent,
@@ -123,8 +125,7 @@ const appRoutes: Routes = [
     DispatcherActionsComponent,
     NavigatorActionsComponent,
     EngineerActionsComponent,
-    GmActionsComponent,
-    SplitPipe
+    GmActionsComponent
   ],
   imports: [
     RouterModule.forChild(

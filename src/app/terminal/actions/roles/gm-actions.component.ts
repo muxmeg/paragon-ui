@@ -10,8 +10,6 @@ import {AuthService} from "../../../shared/authentication.service";
   `
 })
 export class GmActionsComponent {
-  secret: boolean;
   constructor(authService: AuthService) {
-    this.secret = authService.currentRole.secret;
   }
 }

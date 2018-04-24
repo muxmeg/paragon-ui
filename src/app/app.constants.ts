@@ -2,7 +2,7 @@ export class Constants {
   constructor() {
   }
 
-  public static readonly BACKEND_URL: string = "//localhost:8080/";
+  public static readonly BACKEND_URL: string = "//192.168.0.185:8080/";
   public static readonly REST_SUFFIX: string = "rest/";
   public static readonly HTTP_PREFIX: string = "http:";
   public static readonly WS_PREFIX: string = "ws:";

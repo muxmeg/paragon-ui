@@ -6,6 +6,7 @@ import {AuthService} from "../../../shared/authentication.service";
     <app-action-ship-data></app-action-ship-data>
     <app-action-engine-panel></app-action-engine-panel>
     <app-action-cargo></app-action-cargo>
+    <app-action-anchor></app-action-anchor>
     <div *ngIf="secret">
     </div>
   `

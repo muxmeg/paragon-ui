@@ -20,4 +20,10 @@ export class ScheduledTaskService {
       JSON.stringify({type: "enableCoolers", parameters: {},
         sender: this.authService.currentRole.name}));
   }
+
+  ejectAir(): void {
+    this.stompService.publish(this.SERVICE_URL,
+      JSON.stringify({type: "ejectAir", parameters: {},
+        sender: this.authService.currentRole.name}));
+  }
 }

@@ -5,7 +5,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 @Component({
   selector: "app-terminal-actions",
   template:  `
-    <h2>Available actions</h2>
     <router-outlet></router-outlet>
   `
 })
