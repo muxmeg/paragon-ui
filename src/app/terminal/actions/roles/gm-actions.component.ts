@@ -7,6 +7,7 @@ import {AuthService} from "../../../shared/authentication.service";
     <app-action-navigation-data></app-action-navigation-data>
     <app-ship-manual-events></app-ship-manual-events>
     <app-action-radar-data></app-action-radar-data>
+    <app-action-change-password></app-action-change-password>
   `
 })
 export class GmActionsComponent {

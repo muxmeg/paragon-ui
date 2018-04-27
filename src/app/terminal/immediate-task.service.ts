@@ -16,6 +16,13 @@ export class ImmediateTaskService {
         sender: this.authService.currentRole.name}));
   }
 
+  changePassword(role: String, newPassword: String): void {
+    this.stompService.publish(this.SERVICE_URL,
+      JSON.stringify({type: "changePassword", parameters: {role: role,
+        newPassword: newPassword},
+        sender: this.authService.currentRole.name}));
+  }
+
   generatorActivation(): void {
     this.stompService.publish(this.SERVICE_URL,
       JSON.stringify({type: "generatorActivation", parameters: {},

@@ -4,5 +4,16 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // HTTP_PREFIX: "http:",
+  // REST_SUFFIX: "rest/",
+  // BACKEND_URL: "//localhost:8080/",
+  // WS_PREFIX: "ws:",
+  // WS_SUFFIX: "ws/websocket",
+  HTTP_PREFIX: "http://",
+  REST_SUFFIX: "/rest/",
+  // BACKEND_URL: "//[2a02:a317:e040:1700:31c2:abc1:e4b1:47b9]:8080/",
+  BACKEND_URL: "localhost:8080",
+  WS_PREFIX: "ws://",
+  WS_SUFFIX: "/ws/websocket",
 };

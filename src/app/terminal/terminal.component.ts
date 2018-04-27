@@ -1,8 +1,9 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {Role} from "../model/role";
 import {AuthService} from "../shared/authentication.service";
 import {MatTabChangeEvent} from "@angular/material";
+import {StompService} from "@stomp/ng2-stompjs";
 
 @Component({
   selector: "app-terminal",
@@ -10,17 +11,26 @@ import {MatTabChangeEvent} from "@angular/material";
   styleUrls: [ "terminal.component.css" ]
 })
 
-export class TerminalComponent {
+export class TerminalComponent implements OnInit {
+  private readonly ROLE_TOPIC_MAPPING: string = "/topic/role";
+  private readonly ROLE_LOGOUT_TOPIC_MAPPING: string = this.ROLE_TOPIC_MAPPING + "/logout/";
   role: Role;
   notifications: Object;
   currentTab: string;
 
-  constructor(private authService: AuthService, private router: Router) {
-    this.role = authService.currentRole;
+  constructor(private authService: AuthService, private router: Router, private stompService: StompService) {
+  }
+
+  ngOnInit(): void {
+    this.role = this.authService.currentRole;
     if (!this.role) {
-      router.navigate(["/login"]);
+      this.router.navigate(["/login"]);
     }
     this.notifications = {publicChat: 0, privateChat: 0, gmChat: 0, secretChat: 0};
+    this.stompService.subscribe(this.ROLE_LOGOUT_TOPIC_MAPPING + this.role.name)
+      .subscribe(() => {
+        this.logout();
+      });
   }
 
   onMessageReceive(tabName) {

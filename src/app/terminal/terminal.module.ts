@@ -49,6 +49,7 @@ import {GmActionsComponent} from "./actions/roles/gm-actions.component";
 import {ShipManualEventsComponent} from "./actions/ship-manual-events.component";
 import {RadarComponent} from "./actions/radar-data.component";
 import {EjectAirComponent} from "./actions/eject-air.component";
+import {PasswordChangeComponent} from "./actions/password-change.component";
 
 const appRoutes: Routes = [
   {
@@ -109,6 +110,7 @@ const appRoutes: Routes = [
     GeneratorActivationComponent,
     CargoPanelComponent,
     ShipDataPanelComponent,
+    PasswordChangeComponent,
     RadarComponent,
     EjectAirComponent,
     WindDataComponent,
