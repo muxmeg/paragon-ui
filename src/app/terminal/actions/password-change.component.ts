@@ -11,7 +11,7 @@ export class PasswordChangeComponent implements OnInit {
   newPassword: String;
   selectedRole: String;
   roles: String[];
-  isSecret: boolean = true;
+  isSecret = true;
 
   constructor(private immediateTaskService: ImmediateTaskService, private rolesService: RolesService) {
   }
