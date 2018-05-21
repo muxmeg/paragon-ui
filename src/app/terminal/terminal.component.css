@@ -5,3 +5,28 @@
 .tab-content {
   padding: 16px;
 }
+
+.logout-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  z-index: 100;
+}
+
+.refresh-btn {
+  position: absolute;
+  right: 125px;
+  top: 15px;
+  z-index: 100;
+}
+
+@media only screen and (max-width: 768px) {
+  .logout-btn {
+    top: 8px;
+  }
+
+  .refresh-btn {
+    right: 15px;
+    top: 55px;
+  }
+}

@@ -4,6 +4,7 @@ import {Role} from "../model/role";
 import {AuthService} from "../shared/authentication.service";
 import {MatTabChangeEvent} from "@angular/material";
 import {StompService} from "@stomp/ng2-stompjs";
+import {EventService} from "./event.service";
 
 @Component({
   selector: "app-terminal",
@@ -18,7 +19,8 @@ export class TerminalComponent implements OnInit {
   notifications: Object;
   currentTab: string;
 
-  constructor(private authService: AuthService, private router: Router, private stompService: StompService) {
+  constructor(private authService: AuthService, private router: Router, private stompService: StompService,
+              private eventService: EventService) {
   }
 
   ngOnInit(): void {
@@ -47,5 +49,9 @@ export class TerminalComponent implements OnInit {
   onTabChange($event: MatTabChangeEvent) {
     this.currentTab = $event.tab.textLabel;
     this.notifications[this.currentTab] = 0;
+  }
+
+  refreshActions() {
+    this.eventService.refreshData$.next("");
   }
 }

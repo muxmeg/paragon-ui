@@ -7,6 +7,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {StompConfig, StompService} from "@stomp/ng2-stompjs";
 import {SharedModule} from "./shared/shared.module";
 import {Constants} from "./app.constants";
+import {EventService} from "./terminal/event.service";
 
 const appRoutes: Routes = [
   { path: "login", loadChildren: "app/login/login.module#LoginModule" },
@@ -35,7 +36,7 @@ const stompConfig: StompConfig = {
   // Wait in milliseconds before attempting auto reconnect
   // Set to 0 to disable
   // Typical value 5000 (5 seconds)
-  reconnect_delay: 5000,
+  reconnect_delay: 10000,
 
   // Will log diagnostics on console
   debug: true
@@ -57,7 +58,7 @@ const stompConfig: StompConfig = {
     BrowserAnimationsModule,
     HttpClientModule
   ],
-  providers: [StompService,
+  providers: [StompService, EventService,
     {
       provide: StompConfig,
       useValue: stompConfig

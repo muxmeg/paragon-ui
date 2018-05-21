@@ -1,30 +1,34 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {StompService} from "@stomp/ng2-stompjs";
-import {animate, query, stagger, style, transition, trigger} from "@angular/animations";
-import {keyframes} from "@angular/core/src/animation/dsl";
 import {EncryptedCommand} from "../../model/encryptedCommand";
+import {EventService} from "../event.service";
 
 @Component({
   selector: "app-action-navigation-commands",
   templateUrl: "navigation-commands.component.html"
 })
 
-export class NavigationCommandsComponent {
+export class NavigationCommandsComponent implements OnInit {
   private readonly NAVIGATION_COMMANDS_TOPIC_MAPPING: string = "/topic/navigationCommands";
   private readonly NAVIGATION_COMMANDS_REQUEST_MAPPING: string = "/ws/navigationCommands/request";
   navigationCommands: EncryptedCommand[];
   displayedColumns = ["task", "command"];
   commandLength = 12;
 
-  constructor(private stompService: StompService) {
-    stompService.subscribe(this.NAVIGATION_COMMANDS_TOPIC_MAPPING)
+  constructor(private stompService: StompService, private eventService: EventService) {
+  }
+
+  ngOnInit(): void {
+    this.stompService.subscribe(this.NAVIGATION_COMMANDS_TOPIC_MAPPING)
       .subscribe((result) => {
         this.navigationCommands = JSON.parse(result.body).commands;
         console.log(this.navigationCommands);
       });
-    setTimeout(() => { // TODO find the way to fix this
+    const refreshData = () => {
       this.stompService.publish(this.NAVIGATION_COMMANDS_REQUEST_MAPPING, "ololo");
-    }, 1000);
+    };
+    this.eventService.refreshData$.subscribe(value => refreshData());
+    refreshData();
   }
   displayTask(task: any): string {
     let result: string;

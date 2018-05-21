@@ -2,7 +2,7 @@
   <mat-nav-list dense style="height: 70vh; overflow: auto;" [appScrollDown]>
     <mat-list-item *ngFor="let message of messages">
       <span style="font-weight: 700; margin-right: 0.5vh">
-      {{message.sender}}:
+      {{message.sender}}<span *ngIf="message.target"> => {{message.target}}</span>:
       </span>
       {{message.body}}
     </mat-list-item>

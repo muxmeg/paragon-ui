@@ -1,4 +1,8 @@
-<button mat-raised-button style="position: absolute; right: 15px; top: 15px; z-index: 100;" (click)="logout()">Logout</button>
+<button mat-raised-button class="logout-btn" (click)="logout()">Logout</button>
+<button mat-raised-button color="primary" class="refresh-btn"
+        (click)="refreshActions()">
+  Refresh
+</button>
 <mat-tab-group class="tab-group" (selectedTabChange)="onTabChange($event)">
   <mat-tab label="publicChat" *ngIf="role.name === 'dispatcher' || role.name === 'operator'">
     <ng-template mat-tab-label>

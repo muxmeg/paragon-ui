@@ -1,7 +1,7 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {StompService} from "@stomp/ng2-stompjs";
-import {animate, query, stagger, style, transition, trigger} from "@angular/animations";
-import {keyframes} from "@angular/core/src/animation/dsl";
+import {animate, style, transition, trigger} from "@angular/animations";
+import {EventService} from "../event.service";
 
 @Component({
   selector: "app-action-navigation-panel",
@@ -21,7 +21,7 @@ import {keyframes} from "@angular/core/src/animation/dsl";
   ]
 })
 
-export class NavigationPanelComponent {
+export class NavigationPanelComponent implements OnInit {
   private readonly NAVIGATION_STRINGS_TOPIC_MAPPING: string = "/topic/navigationStrings";
   private readonly NAVIGATION_COMMANDS_MAPPING: string = "/ws/navigationCommands";
   private readonly NAVIGATION_STRINGS_REQUEST_MAPPING: string = "/ws/navigationStrings/request";
@@ -33,14 +33,18 @@ export class NavigationPanelComponent {
   currentCommand = "";
   sendMessage = false;
 
-  constructor(private stompService: StompService) {
-    stompService.subscribe(this.NAVIGATION_STRINGS_TOPIC_MAPPING)
+  constructor(private stompService: StompService, private eventService: EventService) {
+  }
+  ngOnInit(): void {
+    this.stompService.subscribe(this.NAVIGATION_STRINGS_TOPIC_MAPPING)
       .subscribe((result) => {
         this.navigationStrings = JSON.parse(result.body).map((value) => value.split(""));
       });
-    setTimeout(() => {
-      this.stompService.publish(this.NAVIGATION_STRINGS_REQUEST_MAPPING, "ololo"); // TODO remove messages
-    }, 1000);
+    const refreshData = () => {
+      this.stompService.publish(this.NAVIGATION_STRINGS_REQUEST_MAPPING, "ololo");
+    };
+    this.eventService.refreshData$.subscribe(value => refreshData());
+    refreshData();
   }
   clearCommand(): void {
     this.currentCommand = "";

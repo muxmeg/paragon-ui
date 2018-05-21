@@ -6,4 +6,5 @@ export interface ShipData {
   airUsers: number;
   message: string;
   anchorOn: boolean;
+  date: Date;
 }
